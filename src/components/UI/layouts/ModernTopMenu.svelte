@@ -3,8 +3,8 @@
 	import ModernButton from '../components/ModernButton.svelte'
 	import ModernCard from '../components/ModernCard.svelte'
 
-	$: isCampaign = $page.route.id?.includes('campaign') ?? false
-	$: isUserTracks = $page.route.id?.includes('user-tracks') ?? false
+	$: isFriendsRace = $page.route.id?.includes('friends-race') ?? false
+	$: isInfiniteDrive = $page.route.id?.includes('infinite-drive') ?? false
 	$: isOptions = $page.route.id?.includes('options') ?? false
 </script>
 
@@ -32,8 +32,8 @@
 	<ModernCard variant="glass" padding="sm" glow>
 		<div class="grid grid-cols-3 gap-3">
 			<ModernButton
-				href={isCampaign ? '/menu/main' : '/menu/campaign'}
-				variant={isCampaign ? 'primary' : 'secondary'}
+				href={isFriendsRace ? '/menu/main' : '/menu/friends-race'}
+				variant={isFriendsRace ? 'primary' : 'secondary'}
 				size="md"
 			>
 				<svg
@@ -43,17 +43,15 @@
 					class="w-5 h-5"
 				>
 					<path
-						fill-rule="evenodd"
-						d="M5.166 2.621v.858c-1.035.148-2.059.33-3.071.543a.75.75 0 00-.584.859 6.753 6.753 0 006.138 5.6 6.73 6.73 0 002.743 1.346A6.707 6.707 0 019.279 15H8.54c-1.036 0-1.875.84-1.875 1.875V19.5h-.75a2.25 2.25 0 00-2.25 2.25c0 .414.336.75.75.75h15a.75.75 0 00.75-.75 2.25 2.25 0 00-2.25-2.25h-.75v-2.625c0-1.036-.84-1.875-1.875-1.875h-.739a6.706 6.706 0 01-1.112-3.173 6.73 6.73 0 002.743-1.347 6.753 6.753 0 006.139-5.6.75.75 0 00-.585-.858 47.077 47.077 0 00-3.07-.543V2.62a.75.75 0 00-.658-.744 49.22 49.22 0 00-6.093-.377c-2.063 0-4.096.128-6.093.377a.75.75 0 00-.657.744zm0 2.629c0 1.196.312 2.32.857 3.294A5.266 5.266 0 013.16 5.337a45.6 45.6 0 012.006-.343v.256zm13.5 0v-.256c.674.1 1.343.214 2.006.343a5.265 5.265 0 01-2.863 3.207 6.72 6.72 0 00.857-3.294z"
-						clip-rule="evenodd"
+						d="M16 11c1.657 0 3-1.567 3-3.5S17.657 4 16 4s-3 1.567-3 3.5S14.343 11 16 11zm-8 0c1.657 0 3-1.567 3-3.5S9.657 4 8 4 5 5.567 5 7.5 6.343 11 8 11zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5C15 14.17 10.33 13 8 13zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"
 					/>
 				</svg>
-				<span class="hidden lg:inline">Campaign</span>
+				<span class="hidden lg:inline">Friends Race</span>
 			</ModernButton>
 
 			<ModernButton
-				href={isUserTracks ? '/menu/main' : '/menu/user-tracks'}
-				variant={isUserTracks ? 'primary' : 'secondary'}
+				href={isInfiniteDrive ? '/menu/main' : '/menu/infinite-drive'}
+				variant={isInfiniteDrive ? 'primary' : 'secondary'}
 				size="md"
 			>
 				<svg
@@ -63,16 +61,10 @@
 					class="w-5 h-5"
 				>
 					<path
-						d="M11.644 1.59a.75.75 0 01.712 0l9.75 5.25a.75.75 0 010 1.32l-9.75 5.25a.75.75 0 01-.712 0l-9.75-5.25a.75.75 0 010-1.32l9.75-5.25z"
-					/>
-					<path
-						d="M3.265 10.602l7.668 4.129a2.25 2.25 0 002.134 0l7.668-4.13 1.37.739a.75.75 0 010 1.32l-9.75 5.25a.75.75 0 01-.71 0l-9.75-5.25a.75.75 0 010-1.32l1.37-.738z"
-					/>
-					<path
-						d="M10.933 19.231l-7.668-4.13-1.37.739a.75.75 0 000 1.32l9.75 5.25c.221.12.489.12.71 0l9.75-5.25a.75.75 0 000-1.32l-1.37-.738-7.668 4.13a2.25 2.25 0 01-2.134-.001z"
+						d="M4 16.5c0 .83.67 1.5 1.5 1.5H7v-2H5.5a.5.5 0 01-.5-.5V7.5c0-.28.22-.5.5-.5H7V5H5.5C4.67 5 4 5.67 4 6.5v10zM17 18h1.5c.83 0 1.5-.67 1.5-1.5v-10C20 5.67 19.33 5 18.5 5H17v2h1.5c.28 0 .5.22.5.5v8c0 .28-.22.5-.5.5H17v2zM8 17h8v-2H8v2zm0-4h8v-2H8v2zm0-4h8V7H8v2z"
 					/>
 				</svg>
-				<span class="hidden lg:inline">Your Tracks</span>
+				<span class="hidden lg:inline">Infinite Drive</span>
 			</ModernButton>
 
 			<ModernButton
