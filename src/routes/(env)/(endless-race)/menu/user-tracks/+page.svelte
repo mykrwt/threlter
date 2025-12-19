@@ -6,8 +6,8 @@
 	import { TrackData } from '$lib/TrackData/TrackData'
 	import { appState } from '$stores/app'
 	import JSZip from 'jszip'
-	import SpecialButton from '../../../../../components/UI/components/SpecialButton.svelte'
-	import TopMenu from '../../../../../components/UI/layouts/TopMenu.svelte'
+	import ModernButton from '../../../../../components/UI/components/ModernButton.svelte'
+	import ModernTopMenu from '../../../../../components/UI/layouts/ModernTopMenu.svelte'
 
 	let trackSelected = false
 
@@ -56,7 +56,7 @@
 
 <UiWrapper>
 	<TopBarLayout>
-		<TopMenu slot="topbar-center" />
+		<ModernTopMenu slot="topbar-center" />
 
 		<TrackSelection
 			bind:trackSelected
@@ -109,8 +109,8 @@
 						handleImport(selectedFile)
 					}}
 				/>
-				<SpecialButton
-					style="inverted"
+				<ModernButton
+					variant="accent"
 					on:click={() => {
 						if (!fileInputEl) return
 						fileInputEl.click()
@@ -120,7 +120,7 @@
 						xmlns="http://www.w3.org/2000/svg"
 						width="60"
 						height="60"
-						fill="#000000"
+						fill="currentColor"
 						viewBox="0 0 256 256"
 					>
 						<path
@@ -128,9 +128,9 @@
 						/>
 					</svg>
 					IMPORT
-				</SpecialButton>
-				<SpecialButton
-					style="inverted"
+				</ModernButton>
+				<ModernButton
+					variant="accent"
 					forceFocusOnMount={!userHasTracks}
 					on:click={() => {
 						const trackDatas = $localStorageTrackIds
@@ -155,7 +155,7 @@
 						xmlns="http://www.w3.org/2000/svg"
 						width="60"
 						height="60"
-						fill="#000000"
+						fill="currentColor"
 						viewBox="0 0 256 256"
 					>
 						<path
@@ -163,7 +163,7 @@
 						/>
 					</svg>
 					CREATE
-				</SpecialButton>
+				</ModernButton>
 			</div>
 		</TrackSelection>
 	</TopBarLayout>

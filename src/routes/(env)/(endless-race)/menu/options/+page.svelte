@@ -1,13 +1,12 @@
 <script lang="ts">
 	import UiWrapper from '$components/UI/UiWrapper.svelte'
-	import Card from '$components/UI/components/Card.svelte'
 	import Checkbox from '$components/UI/components/Checkbox.svelte'
 	import TextInput from '$components/UI/components/TextInput.svelte'
 	import TopBarLayout from '$components/UI/layouts/TopBarLayout.svelte'
 	import { appState } from '$stores/app'
-	import BlurryCard from '../../../../../components/UI/components/BlurryCard.svelte'
-	import SpecialButton from '../../../../../components/UI/components/SpecialButton.svelte'
-	import TopMenu from '../../../../../components/UI/layouts/TopMenu.svelte'
+	import ModernButton from '../../../../../components/UI/components/ModernButton.svelte'
+	import ModernCard from '../../../../../components/UI/components/ModernCard.svelte'
+	import ModernTopMenu from '../../../../../components/UI/layouts/ModernTopMenu.svelte'
 
 	const { audio, video, player, debug } = appState.options
 
@@ -20,53 +19,57 @@
 
 <UiWrapper>
 	<TopBarLayout>
-		<TopMenu slot="topbar-center" />
+		<ModernTopMenu slot="topbar-center" />
 
-		<BlurryCard class="h-full grid grid-cols-2 gap-[15px]">
-			<Card class="flex flex-col items-start justify-start">
-				<div class="mb-[10px] font-headline">Audio</div>
+		<ModernCard variant="glass" glow class="h-full">
+			<div class="grid grid-cols-2 gap-6">
+				<ModernCard variant="solid" padding="md" class="flex flex-col items-start justify-start">
+					<div class="mb-4 font-headline text-primary-light text-lg">Audio</div>
 
-				<Checkbox forceFocusOnMount class="pl-0" bind:checked={$music}>Music</Checkbox>
+					<Checkbox forceFocusOnMount class="pl-0" bind:checked={$music}>Music</Checkbox>
 
-				<Checkbox class="pl-0" bind:checked={$sfx}>SFX</Checkbox>
-			</Card>
+					<Checkbox class="pl-0" bind:checked={$sfx}>SFX</Checkbox>
+				</ModernCard>
 
-			<Card class="flex flex-col items-start justify-start">
-				<div class="mb-[10px] font-headline">Video</div>
+				<ModernCard variant="solid" padding="md" class="flex flex-col items-start justify-start">
+					<div class="mb-4 font-headline text-primary-light text-lg">Video</div>
 
-				<Checkbox class="pl-0" bind:checked={$shadows}>SHADOWS</Checkbox>
-				<Checkbox class="pl-0" bind:checked={$postprocessing}>POST PROCESSING</Checkbox>
-			</Card>
+					<Checkbox class="pl-0" bind:checked={$shadows}>SHADOWS</Checkbox>
+					<Checkbox class="pl-0" bind:checked={$postprocessing}>POST PROCESSING</Checkbox>
+				</ModernCard>
 
-			<Card class="flex flex-col items-start justify-start">
-				<div class="mb-[10px] font-headline">Player</div>
+				<ModernCard variant="solid" padding="md" class="flex flex-col items-start justify-start">
+					<div class="mb-4 font-headline text-primary-light text-lg">Player</div>
 
-				<div class="flex flex-row items-end text-[0.8em] w-full">
-					<TextInput
-						label="Name"
-						id="name"
-						inputClass="!rounded-r-none !border-r-0 h-[46px]"
-						preventFocusOnFocusLost
-						bind:value={oldPlayerName}
-					/>
+					<div class="flex flex-row items-end text-[0.8em] w-full gap-2">
+						<TextInput
+							label="Name"
+							id="name"
+							inputClass="!rounded-r-none !border-r-0 h-[46px]"
+							preventFocusOnFocusLost
+							bind:value={oldPlayerName}
+						/>
 
-					<SpecialButton
-						disabled={!oldPlayerName.length}
-						class="h-[46px] !rounded-l-none"
-						on:click={() => {
-							name.set(oldPlayerName)
-						}}
-					>
-						Save
-					</SpecialButton>
-				</div>
-			</Card>
+						<ModernButton
+							variant="primary"
+							size="md"
+							disabled={!oldPlayerName.length}
+							class="h-[46px] !rounded-l-none"
+							on:click={() => {
+								name.set(oldPlayerName)
+							}}
+						>
+							Save
+						</ModernButton>
+					</div>
+				</ModernCard>
 
-			<Card class="flex flex-col items-start justify-start">
-				<div class="mb-[10px] font-headline">Misc</div>
+				<ModernCard variant="solid" padding="md" class="flex flex-col items-start justify-start">
+					<div class="mb-4 font-headline text-primary-light text-lg">Misc</div>
 
-				<Checkbox class="pl-0" bind:checked={$debug}>DEBUG</Checkbox>
-			</Card>
-		</BlurryCard>
+					<Checkbox class="pl-0" bind:checked={$debug}>DEBUG</Checkbox>
+				</ModernCard>
+			</div>
+		</ModernCard>
 	</TopBarLayout>
 </UiWrapper>

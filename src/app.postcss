@@ -4,17 +4,38 @@
 @tailwind utilities;
 
 /*
-COLORS
+COLORS - Modern Design System
 */
 
 :root {
-	--color-orange: #f97316; /* alternative FE3D00 */
-	--color-blue-dark: #1e40af;
-	--color-blue-darker: #1e3a8a;
-	--color-blue-darkest: #172554;
+	/* Primary Colors */
+	--color-primary: #6366f1; /* Indigo */
+	--color-primary-light: #818cf8;
+	--color-primary-dark: #4f46e5;
 
-	--font-headline: 'Silkscreen', sans-serif;
-	--font-headline: 'Press Start 2P', sans-serif;
+	/* Accent Colors */
+	--color-accent: #f59e0b; /* Amber */
+	--color-accent-light: #fbbf24;
+	--color-accent-dark: #d97706;
+
+	/* Legacy colors for compatibility */
+	--color-orange: #f59e0b;
+	--color-blue-dark: #4f46e5;
+	--color-blue-darker: #4338ca;
+	--color-blue-darkest: #3730a3;
+
+	/* Neutral Colors */
+	--color-bg-dark: #0f172a; /* Slate 900 */
+	--color-bg-darker: #020617; /* Slate 950 */
+	--color-surface: rgba(30, 41, 59, 0.8); /* Slate 800 with opacity */
+	--color-surface-light: rgba(51, 65, 85, 0.6); /* Slate 700 with opacity */
+
+	/* Text Colors */
+	--color-text-primary: #f1f5f9; /* Slate 100 */
+	--color-text-secondary: #cbd5e1; /* Slate 300 */
+	--color-text-muted: #94a3b8; /* Slate 400 */
+
+	/* Fonts */
 	--font-headline: 'Rubik Mono One', sans-serif;
 	--font-sans: 'Rubik', sans-serif;
 	--font-segments: 'Orbitron', sans-serif;
