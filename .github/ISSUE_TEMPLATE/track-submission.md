@@ -1,18 +1,17 @@
 ---
 name: Track Submission
 about: Submit a Track for Threltemania
-title: "[Track]"
+title: '[Track]'
 labels: track
 assignees: grischaerbe
-
 ---
 
 # Track Submission
 
 ## Title
 
-*Insert title here*
+_Insert title here_
 
 ## Preview Image
 
-*Insert preview image here*
+_Insert preview image here_

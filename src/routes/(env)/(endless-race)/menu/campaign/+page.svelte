@@ -3,7 +3,7 @@
 	import UiWrapper from '$components/UI/UiWrapper.svelte'
 	import TopBarLayout from '$components/UI/layouts/TopBarLayout.svelte'
 	import TrackSelection from '$components/UI/layouts/TrackSelection.svelte'
-	import TopMenu from '../../../../../components/UI/layouts/TopMenu.svelte'
+	import ModernTopMenu from '../../../../../components/UI/layouts/ModernTopMenu.svelte'
 
 	export let data
 
@@ -12,7 +12,7 @@
 
 <UiWrapper>
 	<TopBarLayout>
-		<TopMenu slot="topbar-center" />
+		<ModernTopMenu slot="topbar-center" />
 
 		<TrackSelection
 			bind:trackSelected

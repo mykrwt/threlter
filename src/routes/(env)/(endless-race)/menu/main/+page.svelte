@@ -2,24 +2,19 @@
 	import UiWrapper from '$components/UI/UiWrapper.svelte'
 	import BottomBar from '$components/UI/components/BottomBar.svelte'
 	import TopBarLayout from '$components/UI/layouts/TopBarLayout.svelte'
-	import SpecialButton from '../../../../../components/UI/components/SpecialButton.svelte'
-	import TopMenu from '../../../../../components/UI/layouts/TopMenu.svelte'
+	import ModernButton from '../../../../../components/UI/components/ModernButton.svelte'
+	import ModernTopMenu from '../../../../../components/UI/layouts/ModernTopMenu.svelte'
 </script>
 
 <UiWrapper>
 	<TopBarLayout>
-		<TopMenu slot="topbar-center" />
+		<ModernTopMenu slot="topbar-center" />
 
 		<div>
 			<BottomBar>
-				<SpecialButton
-					style="inverted"
-					href="https://legrisch.com"
-					class="text-[0.5em]"
-					slot="right"
-				>
+				<ModernButton variant="outline" size="sm" href="https://legrisch.com" slot="right">
 					Made by Grischa Erbe
-				</SpecialButton>
+				</ModernButton>
 			</BottomBar>
 		</div>
 	</TopBarLayout>
