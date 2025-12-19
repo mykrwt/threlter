@@ -30,7 +30,14 @@
 	let carState: CarState | undefined = undefined
 
 	let currentTrackRecord = TrackRecord.fromLocalStorage(trackData)
+
+	let respawnCount = 0
 	let workingTrackRecord = TrackRecord.fromTrackData(trackData, new Ghost())
+
+	const startAttempt = () => {
+		workingTrackRecord = TrackRecord.fromTrackData(trackData, new Ghost())
+		workingTrackRecord.respawns.set(respawnCount)
+	}
 
 	const { visibility } = appState
 
@@ -48,7 +55,7 @@
 	const carFrozen = derived([state, visibility, paused], ([state, visibility, paused]) => {
 		if (visibility === 'hidden') return true
 		if (paused) return true
-		if (state === 'playing' || state === 'finished') return false
+		if (state === 'playing') return false
 		return true
 	})
 
@@ -94,6 +101,7 @@
 
 	const restart = () => {
 		paused.set(false)
+		respawnCount = 0
 		respawnCar()
 		resetTrackViewer()
 		state.set('intro')
@@ -101,13 +109,14 @@
 	}
 
 	watch(state, (state) => {
-		// when we're "playing", we initialize a new working track record
 		if (state === 'playing') {
-			workingTrackRecord = TrackRecord.fromTrackData(trackData, new Ghost())
+			startAttempt()
 		}
 	})
 
 	const softReset = () => {
+		respawnCount += 1
+		workingTrackRecord.respawns.set(respawnCount)
 		respawnCar()
 		resetTrackViewer()
 		state.set('count-in')
