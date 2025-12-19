@@ -57,7 +57,8 @@
 
 			<ModernCard variant="glass" padding="md">
 				<div class="text-text-secondary text-xs md:text-sm leading-relaxed">
-					The seed controls where boosts appear. Share it if you want the same endless road.
+					The seed controls the entire procedural track (curves, tiles, boosts). Share it if you
+					want the same endless run.
 				</div>
 			</ModernCard>
 		</div>
