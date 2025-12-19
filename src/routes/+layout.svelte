@@ -36,16 +36,6 @@
 
 <svelte:window on:visibilitychange={onVisibilityChange} />
 
-{#if !isRenderRoute}
-	<div
-		class="absolute top-0 left-0 w-full h-full bg-black md:hidden z-50 text-orange font-headline flex justify-center items-center text-center px-[15px]"
-	>
-		Play on a desktop device
-		<br />
-		for the best experience
-	</div>
-{/if}
-
 <div class="w-full h-full absolute bg-black">
 	<Canvas
 		toneMapping={NoToneMapping}
@@ -94,7 +84,7 @@
 	</Canvas>
 
 	<div
-		class="leading-tight absolute top-0 left-0 w-full h-full z-10 text-[22px] lg:text-[26px] xl:text-[28px] 2xl:text-[30px] [&_button]:pointer-events-auto [&_a]:pointer-events-auto p-[15px] pointer-events-none select-none"
+		class="leading-tight absolute top-0 left-0 w-full h-full z-10 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl [&_button]:pointer-events-auto [&_a]:pointer-events-auto p-3 md:p-4 pointer-events-none select-none"
 		id="car-ui-portal-target"
 	/>
 </div>
