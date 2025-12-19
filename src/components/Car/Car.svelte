@@ -12,9 +12,14 @@
 	import MuscleCarWheel from './Models/MuscleCarWheel.svelte'
 	import RaycastVehicleController from './RaycastVehicleController/RaycastVehicleController.svelte'
 	import WheelRotation from './WheelRotation.svelte'
+	import type { CarState } from './RaycastVehicleController/types'
 
 	let carCam: PerspectiveCamera
 	let freezeCam: PerspectiveCamera
+
+	export let carState: CarState | undefined = undefined
+	let controllerCarState: CarState | undefined = undefined
+	$: carState = controllerCarState
 
 	const { sfx } = appState.options.audio
 	const { debug } = appState.options
@@ -70,6 +75,7 @@
 />
 
 <RaycastVehicleController
+	let:carState={controllerCarState}
 	bind:respawn={respawnCar}
 	debug={$debug}
 	{active}
@@ -77,6 +83,8 @@
 	useAudio={$sfx && $revealed}
 	{freeze}
 >
+	<slot carState={controllerCarState} />
+
 	<T.PerspectiveCamera
 		bind:ref={carCam}
 		slot="camera"

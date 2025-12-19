@@ -10,6 +10,7 @@
 	import { DEG2RAD } from 'three/src/math/MathUtils'
 	import { useEvent } from '../../hooks/useEvents'
 	import Car from '../Car/Car.svelte'
+	import type { CarState } from '../Car/RaycastVehicleController/types'
 	import TrackElement from '../TrackViewer/TrackElement.svelte'
 	import TrackElementTransform from '../TrackViewer/TrackElementTransform.svelte'
 	import TrackViewer from '../TrackViewer/TrackViewer.svelte'
@@ -25,6 +26,8 @@
 	import { spring } from 'svelte/motion'
 
 	export let trackData: TrackData
+
+	let carState: CarState | undefined = undefined
 
 	let currentTrackRecord = TrackRecord.fromLocalStorage(trackData)
 	let workingTrackRecord = TrackRecord.fromTrackData(trackData, new Ghost())
@@ -176,18 +179,18 @@
 	{/if}
 
 	<Car
+		bind:carState
 		active={$carActive}
 		volume={$carVolumeSpring}
 		freeze={$carFrozen}
 		freezeCamera={$state === 'finished'}
-		let:carState
 		useCarCamera={$state !== 'intro'}
 	>
-		{#if workingTrackRecord.ghost && $state === 'playing'}
+		{#if carState && workingTrackRecord.ghost && $state === 'playing'}
 			<GhostRecorder ghost={workingTrackRecord.ghost} time={$time} {carState} />
 		{/if}
 
-		{#if currentTrackRecord?.ghost && $state === 'playing'}
+		{#if carState && currentTrackRecord?.ghost && $state === 'playing'}
 			<GhostPlayer {carState} ghost={currentTrackRecord.ghost} time={$time} />
 		{/if}
 	</Car>
@@ -196,22 +199,35 @@
 		<!-- UI -->
 		<UiWrapper>
 			{#if $paused}
-				<slot time={$time} {proceed} {restart} name="ui-paused" trackRecord={currentTrackRecord} />
+				<slot
+					time={$time}
+					{proceed}
+					{restart}
+					name="ui-paused"
+					trackRecord={currentTrackRecord}
+					{carState}
+				/>
 			{:else if $state === 'intro'}
-				<slot {proceed} trackRecord={currentTrackRecord} name="ui-intro" />
+				<slot {proceed} trackRecord={currentTrackRecord} name="ui-intro" {carState} />
 			{:else if $state === 'count-in'}
-				<slot name="ui-count-in" {proceed} trackRecord={currentTrackRecord}>
+				<slot name="ui-count-in" {proceed} trackRecord={currentTrackRecord} {carState}>
 					<CountIn on:countindone={proceed} time={$time} />
 				</slot>
 			{:else if $state === 'playing'}
-				<slot name="ui-playing" time={$time} trackRecord={currentTrackRecord}>
+				<slot name="ui-playing" time={$time} trackRecord={currentTrackRecord} {carState}>
 					<GamePlay time={$time} />
 				</slot>
 			{:else if $state === 'finished'}
-				<slot name="ui-finished" {restart} time={$time} trackRecord={currentTrackRecord} />
+				<slot
+					name="ui-finished"
+					{restart}
+					time={$time}
+					trackRecord={currentTrackRecord}
+					{carState}
+				/>
 			{/if}
 		</UiWrapper>
 	{/if}
 </Suspense>
 
-<slot {proceed} {restart} time={$time} trackRecord={currentTrackRecord} />
+<slot {proceed} {restart} time={$time} trackRecord={currentTrackRecord} {carState} />
