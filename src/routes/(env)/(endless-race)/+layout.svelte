@@ -7,7 +7,10 @@
 	import UiWrapper from '../../../components/UI/UiWrapper.svelte'
 	import { appState } from '../../../stores/app'
 
-	const showIntro = $page.route.id === '/(env)/(endless-race)'
+	let showIntro = false
+	let showBackground = true
+	$: showIntro = $page.route.id === '/(env)/(endless-race)'
+	$: showBackground = showIntro || Boolean($page.route.id && $page.route.id.includes('/menu/'))
 
 	const { music } = appState.options.audio
 
@@ -35,13 +38,15 @@
 			<audio autoplay src="/music/let-the-games-begin-21858.mp3" loop />
 		{/if}
 
-		<EndlessRaceIntro
-			{showIntro}
-			bind:cameraFadeOpacity
-			on:introcomplete={() => {
-				goto('/menu/main')
-			}}
-		/>
+		{#if showBackground}
+			<EndlessRaceIntro
+				{showIntro}
+				bind:cameraFadeOpacity
+				on:introcomplete={() => {
+					goto('/menu/main')
+				}}
+			/>
+		{/if}
 
 		{#if !suspended}
 			<slot />
