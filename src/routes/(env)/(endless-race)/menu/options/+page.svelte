@@ -21,10 +21,12 @@
 	<TopBarLayout>
 		<ModernTopMenu slot="topbar-center" />
 
-		<ModernCard variant="glass" glow class="h-full">
-			<div class="grid grid-cols-2 gap-6">
+		<ModernCard variant="glass" glow class="h-full mx-2 md:mx-0">
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
 				<ModernCard variant="solid" padding="md" class="flex flex-col items-start justify-start">
-					<div class="mb-4 font-headline text-primary-light text-lg">Audio</div>
+					<div class="mb-3 md:mb-4 font-headline text-primary-light text-base md:text-lg">
+						Audio
+					</div>
 
 					<Checkbox forceFocusOnMount class="pl-0" bind:checked={$music}>Music</Checkbox>
 
@@ -32,20 +34,26 @@
 				</ModernCard>
 
 				<ModernCard variant="solid" padding="md" class="flex flex-col items-start justify-start">
-					<div class="mb-4 font-headline text-primary-light text-lg">Video</div>
+					<div class="mb-3 md:mb-4 font-headline text-primary-light text-base md:text-lg">
+						Video
+					</div>
 
 					<Checkbox class="pl-0" bind:checked={$shadows}>SHADOWS</Checkbox>
 					<Checkbox class="pl-0" bind:checked={$postprocessing}>POST PROCESSING</Checkbox>
 				</ModernCard>
 
 				<ModernCard variant="solid" padding="md" class="flex flex-col items-start justify-start">
-					<div class="mb-4 font-headline text-primary-light text-lg">Player</div>
+					<div class="mb-3 md:mb-4 font-headline text-primary-light text-base md:text-lg">
+						Player
+					</div>
 
-					<div class="flex flex-row items-end text-[0.8em] w-full gap-2">
+					<div
+						class="flex flex-col sm:flex-row items-stretch sm:items-end text-xs md:text-sm w-full gap-2"
+					>
 						<TextInput
 							label="Name"
 							id="name"
-							inputClass="!rounded-r-none !border-r-0 h-[46px]"
+							inputClass="sm:!rounded-r-none sm:!border-r-0 h-[40px] md:h-[46px]"
 							preventFocusOnFocusLost
 							bind:value={oldPlayerName}
 						/>
@@ -54,7 +62,7 @@
 							variant="primary"
 							size="md"
 							disabled={!oldPlayerName.length}
-							class="h-[46px] !rounded-l-none"
+							class="h-[40px] md:h-[46px] sm:!rounded-l-none"
 							on:click={() => {
 								name.set(oldPlayerName)
 							}}
@@ -65,7 +73,7 @@
 				</ModernCard>
 
 				<ModernCard variant="solid" padding="md" class="flex flex-col items-start justify-start">
-					<div class="mb-4 font-headline text-primary-light text-lg">Misc</div>
+					<div class="mb-3 md:mb-4 font-headline text-primary-light text-base md:text-lg">Misc</div>
 
 					<Checkbox class="pl-0" bind:checked={$debug}>DEBUG</Checkbox>
 				</ModernCard>

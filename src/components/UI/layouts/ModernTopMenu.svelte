@@ -8,21 +8,21 @@
 	$: isOptions = $page.route.id?.includes('options') ?? false
 </script>
 
-<div class="flex flex-col gap-6 mb-8">
+<div class="flex flex-col gap-4 md:gap-6 mb-6 md:mb-8">
 	<!-- Logo/Title -->
 	<div class="relative">
 		<div
 			class="absolute inset-0 bg-gradient-to-r from-primary via-accent to-primary blur-3xl opacity-30 animate-pulse"
 		/>
 		<div class="relative text-center">
-			<h1 class="font-headline text-[2.8em] tracking-wider mb-2">
+			<h1 class="font-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-wider mb-2">
 				<span
 					class="bg-gradient-to-r from-primary-light via-accent-light to-primary-light bg-clip-text text-transparent"
 				>
 					THRELTEMANIA
 				</span>
 			</h1>
-			<p class="text-text-secondary text-[0.5em] font-sans tracking-widest uppercase">
+			<p class="text-text-secondary text-xs md:text-sm font-sans tracking-widest uppercase">
 				Racing Game • Powered by Threlte
 			</p>
 		</div>
@@ -30,7 +30,7 @@
 
 	<!-- Navigation Menu -->
 	<ModernCard variant="glass" padding="sm" glow>
-		<div class="grid grid-cols-3 gap-3">
+		<div class="grid grid-cols-3 gap-2 md:gap-3">
 			<ModernButton
 				href={isFriendsRace ? '/menu/main' : '/menu/friends-race'}
 				variant={isFriendsRace ? 'primary' : 'secondary'}

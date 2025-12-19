@@ -23,12 +23,12 @@
 	<TopBarLayout>
 		<ModernTopMenu slot="topbar-center" />
 
-		<div class="flex flex-col gap-6 max-w-3xl mx-auto w-full">
+		<div class="flex flex-col gap-4 md:gap-6 max-w-3xl mx-auto w-full px-2 md:px-0">
 			<ModernCard variant="gradient" glow>
-				<div class="flex flex-col gap-4">
+				<div class="flex flex-col gap-3 md:gap-4">
 					<div>
-						<h2 class="font-headline text-2xl text-text-primary">Infinite Drive</h2>
-						<p class="text-text-secondary text-sm mt-1">
+						<h2 class="font-headline text-lg md:text-2xl text-text-primary">Infinite Drive</h2>
+						<p class="text-text-secondary text-xs md:text-sm mt-1">
 							No finish line. Drive forever on an endlessly generated track.
 						</p>
 					</div>
@@ -36,7 +36,7 @@
 					<div class="flex flex-col sm:flex-row gap-3 items-stretch">
 						<input
 							bind:value={seed}
-							class="w-full rounded-2xl bg-surface/60 border-2 border-white/10 px-4 py-3 text-text-primary font-mono tracking-wider outline-none focus:border-primary/60"
+							class="w-full rounded-2xl bg-surface/60 border-2 border-white/10 px-3 md:px-4 py-2 md:py-3 text-text-primary font-mono tracking-wider outline-none focus:border-primary/60 text-sm md:text-base"
 							placeholder="SEED (optional)"
 						/>
 						<ModernButton variant="secondary" on:click={() => (seed = makeSeed())}>
@@ -56,7 +56,7 @@
 			</ModernCard>
 
 			<ModernCard variant="glass" padding="md">
-				<div class="text-text-secondary text-sm leading-relaxed">
+				<div class="text-text-secondary text-xs md:text-sm leading-relaxed">
 					The seed controls where boosts appear. Share it if you want the same endless road.
 				</div>
 			</ModernCard>

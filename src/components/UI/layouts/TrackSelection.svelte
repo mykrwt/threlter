@@ -43,21 +43,21 @@
 	<div class="font-headline text-orange mb-[15px]">{headline}</div>
 {/if}
 
-<BlurryCard class="grid grid-cols-3 gap-[15px] h-full min-h-0">
+<BlurryCard class="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 h-full min-h-0 p-3 md:p-4">
 	<slot />
 
 	{#if trackDatas.length}
-		<Card class="h-min !p-0 overflow-hidden border-2 border-blue-950">
-			<div class="flex flex-col col-span-1 h-min overflow-auto text-[0.8em]">
+		<Card class="h-min !p-0 overflow-hidden border-2 border-blue-950 md:col-span-1">
+			<div class="flex flex-col h-min overflow-auto text-xs md:text-sm max-h-60 md:max-h-full">
 				{#each trackDatas as trackData, index}
 					{#if trackData}
 						<PlainButton
 							on:click={() => selectTrack(trackData.trackId)}
 							class={c(
-								'text-orange text-left px-[12px] py-[8px] hover:bg-blue-darker focus:bg-blue-darker outline-none',
+								'text-orange text-left px-3 py-2 hover:bg-blue-darker focus:bg-blue-darker outline-none',
 								selectedTrackId === trackData.trackId && '!bg-orange !text-blue-darkest',
-								index === 0 && 'pt-[11px]',
-								index === trackDatas.length - 1 && 'pb-[11px]'
+								index === 0 && 'pt-3',
+								index === trackDatas.length - 1 && 'pb-3'
 							)}
 						>
 							{trackData.trackName.current}
@@ -72,10 +72,10 @@
 		{@const trackData = trackDatas.find((trackData) => trackData.trackId === selectedTrackId)}
 		{#if trackData}
 			{@const trackRecord = TrackRecord.fromLocalStorage(trackData)}
-			<div class="col-span-2">
+			<div class="col-span-1 md:col-span-2">
 				<Card
 					class={c(
-						'flex flex-col gap-[10px]',
+						'flex flex-col gap-2 md:gap-3',
 						(tracksCanBeDeleted ||
 							tracksCanBeDuplicated ||
 							tracksCanBeEdited ||
@@ -83,14 +83,14 @@
 							'!rounded-br-none'
 					)}
 				>
-					<div class="flex flex-row justify-between items-start mb-[15px]">
-						<div>
-							<span class="font-headline">
+					<div class="flex flex-col sm:flex-row justify-between items-start gap-3 mb-2 md:mb-4">
+						<div class="flex-1 min-w-0">
+							<span class="font-headline text-base md:text-lg break-words">
 								{trackData.trackName.current}
 							</span>
 
 							{#if trackData.authorName.current.length && showAuthor}
-								<div class="text-[0.8em]">
+								<div class="text-xs md:text-sm text-text-secondary mt-1">
 									{trackData.authorName.current}
 								</div>
 							{/if}
@@ -109,7 +109,7 @@
 					</div>
 
 					{#if tracksCanBeValidated && !trackData.validated.current}
-						<div class="text-[0.8em]">
+						<div class="text-xs md:text-sm text-text-secondary">
 							Track is not validated yet.
 							<br />
 							To play it, you need to validate it first.
@@ -117,19 +117,22 @@
 					{/if}
 
 					{#if trackData.validated.current}
-						<TrackTimes class="w-[27ch] text-[0.8em]" {trackData} {trackRecord} />
+						<TrackTimes class="w-full md:w-[27ch] text-xs md:text-sm" {trackData} {trackRecord} />
 					{/if}
 				</Card>
 
 				{#if tracksCanBeDeleted || tracksCanBeDuplicated || tracksCanBeEdited || tracksCanBeValidated}
-					<div class="flex flex-row justify-end items-stretch mb-[2px]">
-						<ButtonGroup let:divider={Divider} class="text-[0.7em] !rounded-t-none !border-t-0">
+					<div class="flex flex-row justify-end items-stretch mb-0.5">
+						<ButtonGroup
+							let:divider={Divider}
+							class="text-xs md:text-sm !rounded-t-none !border-t-0 flex-wrap"
+						>
 							{#if !trackData.validated.current && tracksCanBeValidated}
 								<PlainButton
 									on:click={() => {
 										dispatch('validatetrack', { trackId: trackData.trackId })
 									}}
-									class="font-mono uppercase tracking-wide px-2 py-1 text-blue-darkest bg-green-500/80 hover:bg-green-500 focus:bg-green-500"
+									class="font-mono uppercase tracking-wide px-2 md:px-3 py-1 md:py-1.5 text-blue-darkest bg-green-500/80 hover:bg-green-500 focus:bg-green-500"
 								>
 									Validate
 								</PlainButton>
@@ -140,7 +143,7 @@
 									on:click={() => {
 										dispatch('edittrack', { trackId: trackData.trackId })
 									}}
-									class="font-mono uppercase tracking-wide px-2 py-1 text-orange bg-blue-950/60 hover:bg-blue-950/80 focus:bg-blue-950/80"
+									class="font-mono uppercase tracking-wide px-2 md:px-3 py-1 md:py-1.5 text-orange bg-blue-950/60 hover:bg-blue-950/80 focus:bg-blue-950/80"
 								>
 									Edit
 								</PlainButton>
@@ -148,7 +151,7 @@
 							{/if}
 							{#if tracksCanBeDuplicated}
 								<PlainButton
-									class="font-mono uppercase tracking-wide px-2 py-1 text-orange bg-blue-950/60 hover:bg-blue-950/80 focus:bg-blue-950/80"
+									class="font-mono uppercase tracking-wide px-2 md:px-3 py-1 md:py-1.5 text-orange bg-blue-950/60 hover:bg-blue-950/80 focus:bg-blue-950/80"
 									on:click={() => {
 										dispatch('duplicatetrack', { trackId: trackData.trackId })
 									}}
@@ -159,7 +162,7 @@
 							{/if}
 							{#if tracksCanBeExported}
 								<PlainButton
-									class="font-mono uppercase tracking-wide px-2 py-1 text-orange bg-blue-950/60 hover:bg-blue-950/80 focus:bg-blue-950/80"
+									class="font-mono uppercase tracking-wide px-2 md:px-3 py-1 md:py-1.5 text-orange bg-blue-950/60 hover:bg-blue-950/80 focus:bg-blue-950/80"
 									on:click={() => {
 										dispatch('exporttrack', { trackId: trackData.trackId })
 									}}
@@ -170,7 +173,7 @@
 							{/if}
 							{#if tracksCanBeDeleted}
 								<PlainButton
-									class="font-mono uppercase tracking-wide px-2 py-1 text-blue-darkest bg-red-500/80 hover:bg-red-500 focus:bg-red-500"
+									class="font-mono uppercase tracking-wide px-2 md:px-3 py-1 md:py-1.5 text-blue-darkest bg-red-500/80 hover:bg-red-500 focus:bg-red-500"
 									on:click={() => {
 										dispatch('deletetrack', { trackId: trackData.trackId })
 									}}

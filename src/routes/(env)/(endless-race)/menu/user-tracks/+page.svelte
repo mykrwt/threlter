@@ -93,7 +93,7 @@
 			}}
 		>
 			<div
-				class="bottom-0 pb-[15px] bg-gradient-to-t from-blue-950 to-transparent pt-[60px] left-0 w-full justify-center absolute flex flex-row gap-[15px] text-[0.8em]"
+				class="bottom-0 pb-3 md:pb-4 bg-gradient-to-t from-blue-950 to-transparent pt-12 md:pt-16 left-0 w-full justify-center absolute flex flex-row gap-2 md:gap-4 text-xs md:text-sm px-2"
 			>
 				<input
 					bind:this={fileInputEl}
@@ -118,16 +118,17 @@
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
-						width="60"
-						height="60"
+						width="40"
+						height="40"
 						fill="currentColor"
 						viewBox="0 0 256 256"
+						class="w-8 h-8 md:w-10 md:h-10"
 					>
 						<path
 							d="M213.66,202.34A8,8,0,0,1,208,216H48a8,8,0,0,1-5.66-13.66L108.69,136H48a8,8,0,0,1-5.66-13.66l80-80a8,8,0,0,1,11.32,0l80,80A8,8,0,0,1,208,136H147.31Z"
 						/>
 					</svg>
-					IMPORT
+					<span class="hidden sm:inline">IMPORT</span>
 				</ModernButton>
 				<ModernButton
 					variant="accent"
@@ -153,16 +154,17 @@
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
-						width="60"
-						height="60"
+						width="40"
+						height="40"
 						fill="currentColor"
 						viewBox="0 0 256 256"
+						class="w-8 h-8 md:w-10 md:h-10"
 					>
 						<path
 							d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM184,136H136v48a8,8,0,0,1-16,0V136H72a8,8,0,0,1,0-16h48V72a8,8,0,0,1,16,0v48h48a8,8,0,0,1,0,16Z"
 						/>
 					</svg>
-					CREATE
+					<span class="hidden sm:inline">CREATE</span>
 				</ModernButton>
 			</div>
 		</TrackSelection>
